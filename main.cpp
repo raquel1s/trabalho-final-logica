@@ -13,7 +13,7 @@ typedef struct {
 void menu_print(void);
 void incluir_contato(void);
 void listar_contatos(void);
-void consultar_contato_nome(void);
+void identificar_por_nome(void);
 void excluir_contato(void);
 
 Contato lista_contatos[MAX];
@@ -36,7 +36,7 @@ int main() {
 			listar_contatos();
             break;
         case 3:
-
+			identificar_por_nome();
             break;
         case 4:
         
@@ -91,6 +91,24 @@ void listar_contatos(void){
 		printf("Nome: %s", lista_contatos[i].nome);
 		printf("Telefone: %s", lista_contatos[i].telefone);
 		printf("===============================\n");
+	}
+	printf("\nPressione enter para voltar");
+	getchar();
+}
+
+void identificar_por_nome(){
+    char nome_procura[50];
+
+    printf("Qual nome quer procurar: ");
+    fgets(nome_procura, 50, stdin);
+    for(int i=0; i<qnt_contatos; i++){
+        if(strcmp(nome_procura,lista_contatos[i].nome) == 0){
+            printf("\n==============================");
+            printf("\n%i Contato:\n", i+1);
+            printf("Nome: %s", lista_contatos[i].nome);
+            printf("Telefone: %s", lista_contatos[i].telefone);
+            printf("===============================\n");
+        }
 	}
 	printf("\nPressione enter para voltar");
 	getchar();
