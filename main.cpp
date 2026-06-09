@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
 #define MAX 100
 
@@ -18,6 +19,34 @@ void excluir_contato(void);
 Contato lista_contatos[MAX];
 
 int main() {
+    int choice;
+    do
+    {
+        menu_print();
+        switch (choice)
+        {
+        case 1:
+
+            break;
+        case 2:
+
+            break;
+        case 3:
+
+            break;
+        case 4:
+        
+            break;
+        default:
+            system("cls");
+            for(int i = 0;i < 5;i++){
+                printf("ERRO -scolha invalida");
+                sleep(1000);
+            }
+            break;
+        }
+    } while (choice != 5);
+    
     return 0;
 }
 
