@@ -19,6 +19,33 @@ Contato lista_contatos[MAX];
 int qnt_contatos = 0;
 
 int main() {
+    int choice;
+    do
+    {
+        menu_print();
+        switch (choice)
+        {
+        case 1:
+
+            break;
+        case 2:
+
+            break;
+        case 3:
+
+            break;
+        case 4:
+        
+            break;
+        default:
+            system("cls");
+            for(int i = 0;i < 5;i++){
+                printf("ERRO -scolha invalida");
+                Sleep(1000);
+            }
+            break;
+        }
+    } while (choice != 5);
     return 0;
 }
 
