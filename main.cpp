@@ -60,7 +60,7 @@ void menu_print(void){
 }
 
 void incluir_contato(void){
-	system(cls);
+	system("cls");
 	printf("=========INCLUIR USUARIO=========\n\n");
 	
 	if(qnt_contatos < MAX){
@@ -75,4 +75,14 @@ void incluir_contato(void){
 	}else{
 		printf("\nAgenda lotada!");
 	}	
+}
+
+void listar_contatos(void){
+	for(int i=0; i<qnt_contatos; i++){
+		printf("\n==============================");
+		printf("%i Contato:\n", i+1)
+		printf("Nome: %s", lista_contatos[i].nome);
+		printf("Telefone: %s", lista_contatos[i].telefone);
+		printf("===============================\n");
+	}
 }
