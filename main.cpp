@@ -94,3 +94,21 @@ void listar_contatos(void){
 	printf("\nPressione enter para voltar");
 	getchar();
 }
+
+void identificar_por_nome (){
+    char nome_procura[50];
+
+    printf("Qual nome quer procurar: ");
+    fgets(nome_procura, 50, stdin);
+    for(int i=0; i<qnt_contatos; i++){
+        if(strcmp(nome_procura,lista_contatos[i].nome) == 0){
+            printf("\n==============================");
+            printf("\n%i Contato:\n", i+1);
+            printf("Nome: %s", lista_contatos[i].nome);
+            printf("Telefone: %s", lista_contatos[i].telefone);
+            printf("===============================\n");
+        }
+	}
+	printf("\nPressione enter para voltar");
+	getchar();
+}
