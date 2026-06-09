@@ -84,6 +84,7 @@ void incluir_contato(void){
 }
 
 void listar_contatos(void){
+	system("cls");
 	for(int i=0; i<qnt_contatos; i++){
 		printf("\n==============================");
 		printf("\n%i Contato:\n", i+1);
