@@ -39,14 +39,21 @@ int main() {
 			identificar_por_nome();
             break;
         case 4:
-        
+            
+            break;
+        case 5:
+            system("cls");
+            for(int i = 0;i<10;i++){
+            printf("====================ADEUS====================\n");
+            }
+            sleep(3);
             break;
         default:
             system("cls");
-            for(int i = 0;i < 3;i++){
-                printf("ERRO -scolha invalida");
-                sleep(1);
+            for(int i = 0;i < 10;i++){
+                printf("====================ERRO -escolha invalida====================\n");
             }
+            sleep(3);
             break;
         }
     } while (choice != 5);
@@ -97,8 +104,9 @@ void listar_contatos(void){
 }
 
 void identificar_por_nome(){
+    system("cls");
     char nome_procura[50];
-
+    printf("=========PROCURAR USUARIO=========\n\n");
     printf("Qual nome quer procurar: ");
     fgets(nome_procura, 50, stdin);
     for(int i=0; i<qnt_contatos; i++){
