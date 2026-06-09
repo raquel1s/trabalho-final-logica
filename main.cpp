@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <time.h>
+#include <unistd.h>
 
 #define MAX 100
 
@@ -23,6 +23,9 @@ int main() {
     do
     {
         menu_print();
+        printf("Oque deseja fazer: ");
+        scanf("%i",&choice);
+        fflush(stdin);
         switch (choice)
         {
         case 1:
@@ -39,9 +42,9 @@ int main() {
             break;
         default:
             system("cls");
-            for(int i = 0;i < 5;i++){
+            for(int i = 0;i < 3;i++){
                 printf("ERRO -scolha invalida");
-                Sleep(1000);
+                sleep(0500);
             }
             break;
         }
