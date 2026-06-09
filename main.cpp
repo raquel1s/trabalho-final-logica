@@ -41,7 +41,7 @@ int main() {
             system("cls");
             for(int i = 0;i < 5;i++){
                 printf("ERRO -scolha invalida");
-                sleep(1000);
+                Sleep(1000);
             }
             break;
         }
