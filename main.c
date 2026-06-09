@@ -4,6 +4,6 @@
 
 
 int main() {
-
+    printf("caralho");
     return 0;
 }
