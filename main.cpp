@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 
 #define MAX 100
 
@@ -23,13 +24,16 @@ int main() {
     do
     {
         menu_print();
+        printf("Oque deseja fazer: ");
+        scanf("%i",&choice);
+        fflush(stdin);
         switch (choice)
         {
         case 1:
-
+			incluir_contato();
             break;
         case 2:
-
+			listar_contatos();
             break;
         case 3:
 
@@ -39,9 +43,9 @@ int main() {
             break;
         default:
             system("cls");
-            for(int i = 0;i < 5;i++){
+            for(int i = 0;i < 3;i++){
                 printf("ERRO -scolha invalida");
-                Sleep(1000);
+                sleep(1);
             }
             break;
         }
@@ -75,14 +79,18 @@ void incluir_contato(void){
 	}else{
 		printf("\nAgenda lotada!");
 	}	
+	printf("\nPressione enter para voltar");
+	getchar();
 }
 
 void listar_contatos(void){
 	for(int i=0; i<qnt_contatos; i++){
 		printf("\n==============================");
-		printf("%i Contato:\n", i+1)
+		printf("\n%i Contato:\n", i+1);
 		printf("Nome: %s", lista_contatos[i].nome);
 		printf("Telefone: %s", lista_contatos[i].telefone);
 		printf("===============================\n");
 	}
+	printf("\nPressione enter para voltar");
+	getchar();
 }
