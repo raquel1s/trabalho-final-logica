@@ -5,5 +5,6 @@
 
 int main() {
     printf("caralho");
+    scanf("");
     return 0;
 }
