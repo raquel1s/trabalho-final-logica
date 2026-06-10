@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <unistd.h>
+#include <windows.h>
 
 #define MAX 100
 
@@ -24,7 +24,7 @@ int main() {
     do
     {
         menu_print();
-        printf("Oque deseja fazer: ");
+        printf("Escolha uma opcao: ");
         scanf("%i",&choice);
         fflush(stdin);
         switch (choice)
@@ -39,21 +39,20 @@ int main() {
 			identificar_por_nome();
             break;
         case 4:
-            
+            excluir_contato();
             break;
         case 5:
             system("cls");
             for(int i = 0;i<10;i++){
-            printf("====================ADEUS====================\n");
+            	printf("====================ADEUS====================\n");
             }
-            sleep(3);
             break;
         default:
             system("cls");
             for(int i = 0;i < 10;i++){
-                printf("====================ERRO -escolha invalida====================\n");
+                printf("====================ERRO - escolha invalida====================\n");
             }
-            sleep(3);
+			Sleep(1000);
             break;
         }
     } while (choice != 5);
@@ -77,9 +76,21 @@ void incluir_contato(void){
 	if(qnt_contatos < MAX){
 		printf("Digite o nome do contato: ");
 		fgets(lista_contatos[qnt_contatos].nome, 50, stdin);
+
+		if(lista_contatos[qnt_contatos].nome[0] == '\n'){
+    		printf("Nome nao pode ser vazio!\n");
+    		getchar();
+    		return;
+		}
 		
 		printf("Digite o telefone do contato: ");
 		fgets(lista_contatos[qnt_contatos].telefone, 20, stdin);
+
+		if(lista_contatos[qnt_contatos].telefone[0] == '\n'){
+    		printf("Telefone nao pode ser vazio!\n");
+    		getchar();
+    		return;
+		}
 		
 		qnt_contatos++;
 		printf("\nContato salvo com sucesso!");
@@ -92,12 +103,18 @@ void incluir_contato(void){
 
 void listar_contatos(void){
 	system("cls");
-	for(int i=0; i<qnt_contatos; i++){
-		printf("\n==============================");
-		printf("\n%i Contato:\n", i+1);
-		printf("Nome: %s", lista_contatos[i].nome);
-		printf("Telefone: %s", lista_contatos[i].telefone);
-		printf("===============================\n");
+	
+	if(qnt_contatos != 0){
+		printf("=========AGENDA=========\n");
+		for(int i=0; i<qnt_contatos; i++){
+			printf("\n==============================");
+			printf("\n%i Contato:\n", i+1);
+			printf("Nome: %s", lista_contatos[i].nome);
+			printf("Telefone: %s", lista_contatos[i].telefone);
+			printf("===============================\n");
+		}
+	}else{
+		printf("Agenda vazia!");
 	}
 	printf("\nPressione enter para voltar");
 	getchar();
@@ -106,6 +123,8 @@ void listar_contatos(void){
 void identificar_por_nome(){
     system("cls");
     char nome_procura[50];
+    int encontrou = 0;
+    
     printf("=========PROCURAR USUARIO=========\n\n");
     printf("Qual nome quer procurar: ");
     fgets(nome_procura, 50, stdin);
@@ -116,8 +135,44 @@ void identificar_por_nome(){
             printf("Nome: %s", lista_contatos[i].nome);
             printf("Telefone: %s", lista_contatos[i].telefone);
             printf("===============================\n");
+            encontrou = 1;
         }
 	}
+	
+	if(!encontrou){
+		printf("Contato nao encontrado!");
+	}
+	
+	printf("\nPressione enter para voltar");
+	getchar();
+}
+
+void excluir_contato(){
+    system("cls");
+    char nome_procura[50];
+    int encontrou = 0;
+    
+    printf("=========EXCLUIR USUARIO=========\n\n");
+    printf("Digite nome de quem deseja excluir: ");
+    fgets(nome_procura, 50, stdin);
+    
+    for(int i=0; i<qnt_contatos; i++){
+        if(strcmp(nome_procura,lista_contatos[i].nome) == 0){
+            for(int j=i; j<qnt_contatos-1; j++){
+            	lista_contatos[j] = lista_contatos[j+1];
+			}
+			qnt_contatos--;
+			encontrou = 1;
+			break;
+        }
+	}
+	
+	if(encontrou){
+		printf("Contato excluido com sucesso!");
+	}else{
+		printf("Contato nao encontrado!");
+	}
+	
 	printf("\nPressione enter para voltar");
 	getchar();
 }
