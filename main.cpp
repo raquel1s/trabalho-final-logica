@@ -15,12 +15,14 @@ void incluir_contato(void);
 void listar_contatos(void);
 void identificar_por_nome(void);
 void excluir_contato(void);
+void carregar_dados(void);
 
 Contato lista_contatos[MAX];
 int qnt_contatos = 0;
 
 int main() {
     int choice;
+	carregar_dados();
     do
     {
         menu_print();
@@ -57,6 +59,21 @@ int main() {
         }
     } while (choice != 5);
     return 0;
+}
+
+void carregar_dados(void){
+	printf("a");
+	FILE *dd;
+	dd = fopen("dados.txt","r");
+	if(dd == NULL) return;
+
+	qnt_contatos = 0;
+	for(int i = 0; i < MAX;i++){
+		if(fgets(lista_contatos[qnt_contatos].nome,50,dd) == NULL) break;;
+		if(fgets(lista_contatos[qnt_contatos].telefone,20,dd) == NULL) break;;
+		qnt_contatos++;
+	}
+	fclose(dd);
 }
 
 void menu_print(void){
