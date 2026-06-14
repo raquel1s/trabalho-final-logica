@@ -45,16 +45,13 @@ int main() {
             excluir_contato();
             break;
         case 5:
+			salvar_dados();
             system("cls");
-            for(int i = 0;i<10;i++){
-            	printf("====================ADEUS====================\n");
-            }
+            for(int i = 0;i<10;i++) printf("====================ADEUS====================\n");
             break;
         default:
             system("cls");
-            for(int i = 0;i < 10;i++){
-                printf("====================ERRO - escolha invalida====================\n");
-            }
+            for(int i = 0;i < 10;i++) printf("====================ERRO - escolha invalida====================\n");
 			Sleep(1000);
             break;
         }
@@ -62,8 +59,25 @@ int main() {
     return 0;
 }
 
+void salvar_dados(void){
+	FILE *dd;
+	dd = fopen("dados.txt","w");
+	if(dd == NULL) return;
+
+	for(int i = 0; i < qnt_contatos; i++){
+		char name[50];
+		char tel[20];
+
+		strcpy(name, lista_contatos[i].nome);
+		strcpy(tel, lista_contatos[i].telefone);
+		name[strcspn(name, "\n")] = '\0';
+		tel[strcspn(tel,"\n")] = '\0';
+		fprintf(dd,"%s\n%s\n",name,tel);
+	}
+	fclose(dd);
+}
+
 void carregar_dados(void){
-	printf("a");
 	FILE *dd;
 	dd = fopen("dados.txt","r");
 	if(dd == NULL) return;
@@ -73,6 +87,8 @@ void carregar_dados(void){
 		if(fgets(lista_contatos[qnt_contatos].telefone,20,dd) == NULL) break;;
 	}
 	fclose(dd);
+	for(int i = 0; i < 10; i++) printf("====================DADOS CARREGADOS====================\n");
+	Sleep(1000);
 }
 
 void menu_print(void){
