@@ -34,6 +34,7 @@ int main() {
         {
         case 1:
 			incluir_contato();
+			salvar_dados();
             break;
         case 2:
 			listar_contatos();
@@ -43,9 +44,9 @@ int main() {
             break;
         case 4:
             excluir_contato();
+            salvar_dados();
             break;
         case 5:
-			salvar_dados();
             system("cls");
             for(int i = 0;i<10;i++) printf("====================ADEUS====================\n");
             break;
